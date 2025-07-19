@@ -1,0 +1,72 @@
+{#
+/**
+ * @file
+ * MediaScope theme implementation for article teasers.
+ *
+ * Available variables:
+ * - node: The node entity.
+ * - content: The node's content.
+ * - attributes: HTML attributes for the containing element.
+ * - url: Direct URL of the current node.
+ * - title: Node title.
+ */
+#}
+
+<article{{ attributes.addClass('article-card', 'node--type-article--teaser') }}>
+  
+  {# Card Image #}
+  {% if content.field_image %}
+    <div class="card-image">
+      {{ content.field_image }}
+      
+      {# Category Badge #}
+      {% if content.field_category %}
+        <div class="card-category">
+          {{ content.field_category }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {# Card Content #}
+  <div class="card-content">
+    {{ title_prefix }}
+    <h3 class="card-title">
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h3>
+    {{ title_suffix }}
+    
+    {# Card Excerpt #}
+    {% if content.body %}
+      <div class="card-excerpt">
+        {{ content.body|striptags|slice(0, 150) }}...
+      </div>
+    {% endif %}
+    
+    {# Card Meta #}
+    <div class="card-meta">
+      <div class="meta-author">
+        {% if node.owner %}
+          <i class="fas fa-user"></i>
+          {{ node.owner.displayname }}
+        {% endif %}
+      </div>
+      
+      <div class="meta-date">
+        <i class="fas fa-calendar"></i>
+        <time datetime="{{ node.createdtime|date('c') }}">
+          {{ node.createdtime|date('M j, Y') }}
+        </time>
+      </div>
+    </div>
+    
+    {# Read More Button #}
+    <div class="card-actions">
+      <a href="{{ url }}" class="btn btn-primary btn-sm read-more-btn">
+        Read More
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+
+</article>

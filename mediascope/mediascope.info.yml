@@ -1,0 +1,29 @@
+name: MediaScope
+type: theme
+description: 'Media-focused subtheme based on Cerulean theme, optimized for online media sites with enhanced article layouts, media galleries, and content presentation.'
+core_version_requirement: '^10.1 || ^11.0'
+'base theme': cerulean
+libraries:
+  - mediascope/global-styling
+  - mediascope/media-components
+ckeditor_stylesheets:
+  - css/style.css
+ckeditor5-stylesheets:
+  - css/ck5style.css
+regions:
+  header: 'Header'
+  nav_branding: 'Navigation branding region'
+  nav_main: 'Main navigation region'
+  nav_additional: 'Additional navigation region (eg search form, social icons, etc)'
+  breadcrumb: 'Breadcrumbs'
+  hero: 'Hero/Featured Content'
+  content_top: 'Content top'
+  content: 'Main content'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  content_bottom: 'Content bottom'
+  footer_top: 'Footer top'
+  footer: 'Footer'
+  footer_bottom: 'Footer bottom'
+libraries-override:
+  cerulean/global-styling: false

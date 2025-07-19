@@ -1,0 +1,35 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+      css/media-layout.css: {}
+  js:
+    js/mediascope.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+media-components:
+  css:
+    theme:
+      css/gallery.css: {}
+      css/article-cards.css: {}
+      css/video-player.css: {}
+  js:
+    js/media-gallery.js: {}
+    js/lazy-loading.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+article-enhancements:
+  css:
+    theme:
+      css/typography.css: {}
+      css/reading-progress.css: {}
+  js:
+    js/reading-progress.js: {}
+    js/social-sharing.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

@@ -1,0 +1,197 @@
+{#
+/**
+ * @file
+ * MediaScope theme implementation for pages.
+ *
+ * Available variables:
+ * - page: The page content.
+ * - attributes: HTML attributes for the page.
+ * - node: The node entity if this is a node page.
+ */
+#}
+
+<div{{ attributes.addClass('page-wrapper') }}>
+  
+  {# Header #}
+  {% if page.header %}
+    <header class="header-region" role="banner">
+      <div class="container">
+        {{ page.header }}
+      </div>
+    </header>
+  {% endif %}
+
+  {# Navigation #}
+  {% if page.nav_branding or page.nav_main or page.nav_additional %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" role="navigation">
+      <div class="container">
+        
+        {# Brand #}
+        {% if page.nav_branding %}
+          <div class="navbar-brand-container">
+            {{ page.nav_branding }}
+          </div>
+        {% endif %}
+        
+        {# Mobile Toggle #}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation" aria-controls="main-navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        {# Navigation Content #}
+        <div class="collapse navbar-collapse" id="main-navigation">
+          
+          {# Main Navigation #}
+          {% if page.nav_main %}
+            <div class="navbar-nav me-auto">
+              {{ page.nav_main }}
+            </div>
+          {% endif %}
+          
+          {# Additional Navigation (Search, Social, etc.) #}
+          {% if page.nav_additional %}
+            <div class="navbar-nav ms-auto">
+              {{ page.nav_additional }}
+            </div>
+          {% endif %}
+          
+        </div>
+      </div>
+    </nav>
+  {% endif %}
+
+  {# Hero Region #}
+  {% if page.hero %}
+    <section class="hero-region">
+      <div class="container">
+        {{ page.hero }}
+      </div>
+    </section>
+  {% endif %}
+
+  {# Breadcrumb #}
+  {% if page.breadcrumb %}
+    <div class="breadcrumb-region">
+      <div class="container">
+        {{ page.breadcrumb }}
+      </div>
+    </div>
+  {% endif %}
+
+  {# Main Content Area #}
+  <main class="main-content" role="main">
+    <div class="container">
+      
+      {# Content Top #}
+      {% if page.content_top %}
+        <div class="content-top-region">
+          {{ page.content_top }}
+        </div>
+      {% endif %}
+      
+      <div class="row">
+        
+        {# Sidebar First #}
+        {% if page.sidebar_first %}
+          <aside class="sidebar-first col-md-3" role="complementary">
+            {{ page.sidebar_first }}
+          </aside>
+        {% endif %}
+        
+        {# Main Content #}
+        <div class="main-content-area {{ page.sidebar_first and page.sidebar_second ? 'col-md-6' : (page.sidebar_first or page.sidebar_second ? 'col-md-9' : 'col-md-12') }}">
+          
+          {# Page Title #}
+          {% if page.page_title %}
+            <div class="page-title-region">
+              {{ page.page_title }}
+            </div>
+          {% endif %}
+          
+          {# Messages #}
+          {% if page.messages %}
+            <div class="messages-region">
+              {{ page.messages }}
+            </div>
+          {% endif %}
+          
+          {# Local Actions #}
+          {% if page.local_actions %}
+            <div class="local-actions-region">
+              {{ page.local_actions }}
+            </div>
+          {% endif %}
+          
+          {# Local Tasks #}
+          {% if page.local_tasks %}
+            <div class="local-tasks-region">
+              {{ page.local_tasks }}
+            </div>
+          {% endif %}
+          
+          {# Help #}
+          {% if page.help %}
+            <div class="help-region">
+              {{ page.help }}
+            </div>
+          {% endif %}
+          
+          {# Main Content #}
+          {{ page.content }}
+          
+        </div>
+        
+        {# Sidebar Second #}
+        {% if page.sidebar_second %}
+          <aside class="sidebar-second col-md-3" role="complementary">
+            {{ page.sidebar_second }}
+          </aside>
+        {% endif %}
+        
+      </div>
+      
+      {# Content Bottom #}
+      {% if page.content_bottom %}
+        <div class="content-bottom-region">
+          {{ page.content_bottom }}
+        </div>
+      {% endif %}
+      
+    </div>
+  </main>
+
+  {# Footer Top #}
+  {% if page.footer_top %}
+    <section class="footer-top-region">
+      <div class="container">
+        {{ page.footer_top }}
+      </div>
+    </section>
+  {% endif %}
+
+  {# Footer #}
+  {% if page.footer %}
+    <footer class="footer-region" role="contentinfo">
+      <div class="container">
+        <div class="footer-content">
+          {{ page.footer }}
+        </div>
+      </div>
+    </footer>
+  {% endif %}
+
+  {# Footer Bottom #}
+  {% if page.footer_bottom %}
+    <div class="footer-bottom-region">
+      <div class="container">
+        {{ page.footer_bottom }}
+      </div>
+    </div>
+  {% endif %}
+
+</div>
+
+{# Reading Progress Bar (only on article pages) #}
+{% if node and node.bundle == 'article' %}
+  <div class="reading-progress-bar"></div>
+{% endif %}

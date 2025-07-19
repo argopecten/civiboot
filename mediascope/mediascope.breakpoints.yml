@@ -1,0 +1,14 @@
+mediascope:
+  label: 'MediaScope'
+mobile:
+  label: 'Mobile'
+  mediaQuery: 'only screen and (max-width: 768px)'
+tablet:
+  label: 'Tablet'
+  mediaQuery: 'only screen and (min-width: 769px) and (max-width: 1024px)'
+desktop:
+  label: 'Desktop'
+  mediaQuery: 'only screen and (min-width: 1025px)'
+wide:
+  label: 'Wide'
+  mediaQuery: 'only screen and (min-width: 1200px)'

@@ -1,0 +1,156 @@
+{#
+/**
+ * @file
+ * MediaScope theme implementation for article nodes.
+ *
+ * Available variables:
+ * - node: The node entity.
+ * - content: The node's content.
+ * - attributes: HTML attributes for the containing element.
+ * - reading_time: Estimated reading time in minutes.
+ * - article_meta: Article metadata (author, date, category, tags).
+ * - share_url: Absolute URL for social sharing.
+ * - share_title: Title for social sharing.
+ */
+#}
+
+<article{{ attributes.addClass('article-wrapper', 'node--type-article') }}>
+  
+  {# Article Header #}
+  <header class="article-header">
+    {{ title_prefix }}
+    <h1 class="article-title">{{ label }}</h1>
+    {{ title_suffix }}
+    
+    <div class="article-meta">
+      {% if node.owner %}
+        <div class="meta-item meta-author">
+          <i class="fas fa-user"></i>
+          <span>{{ node.owner.displayname }}</span>
+        </div>
+      {% endif %}
+      
+      {% if node.createdtime %}
+        <div class="meta-item meta-date">
+          <i class="fas fa-calendar"></i>
+          <time datetime="{{ node.createdtime|date('c') }}">
+            {{ node.createdtime|date('F j, Y') }}
+          </time>
+        </div>
+      {% endif %}
+      
+      {% if reading_time %}
+        <div class="meta-item reading-time">
+          <i class="fas fa-clock"></i>
+          <span>{{ reading_time }} min read</span>
+        </div>
+      {% endif %}
+      
+      {% if content.field_category %}
+        <div class="meta-item meta-category">
+          <i class="fas fa-folder"></i>
+          {{ content.field_category }}
+        </div>
+      {% endif %}
+    </div>
+    
+    {# Featured Image #}
+    {% if content.field_image %}
+      <div class="article-featured-image">
+        {{ content.field_image }}
+      </div>
+    {% endif %}
+  </header>
+
+  {# Article Content #}
+  <div class="article-content">
+    {{ content|without('field_image', 'field_category', 'field_tags', 'field_share_buttons') }}
+  </div>
+
+  {# Article Tags #}
+  {% if content.field_tags %}
+    <div class="article-tags">
+      <h4>Tags:</h4>
+      {{ content.field_tags }}
+    </div>
+  {% endif %}
+
+  {# Social Sharing #}
+  <div class="social-sharing">
+    <h4>Share this article:</h4>
+    <div class="share-buttons">
+      <a href="#" class="share-button facebook" data-platform="facebook" title="Share on Facebook">
+        <i class="fab fa-facebook-f"></i>
+        <span>Facebook</span>
+      </a>
+      <a href="#" class="share-button twitter" data-platform="twitter" title="Share on Twitter">
+        <i class="fab fa-twitter"></i>
+        <span>Twitter</span>
+      </a>
+      <a href="#" class="share-button linkedin" data-platform="linkedin" title="Share on LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+        <span>LinkedIn</span>
+      </a>
+      <a href="#" class="share-button email" data-platform="email" title="Share via Email">
+        <i class="fas fa-envelope"></i>
+        <span>Email</span>
+      </a>
+      <button class="share-button copy-link" title="Copy Link">
+        <i class="fas fa-link"></i>
+        <span>Copy Link</span>
+      </button>
+    </div>
+  </div>
+
+  {# Article Footer #}
+  <footer class="article-footer">
+    {% if content.field_author_bio %}
+      <div class="author-bio">
+        <h4>About the Author</h4>
+        {{ content.field_author_bio }}
+      </div>
+    {% endif %}
+    
+    {% if content.field_related_articles %}
+      <div class="related-articles">
+        <h4>Related Articles</h4>
+        {{ content.field_related_articles }}
+      </div>
+    {% endif %}
+  </footer>
+
+</article>
+
+{# Schema.org structured data #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ label|striptags }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ node.owner.displayname }}"
+  },
+  "datePublished": "{{ node.createdtime|date('c') }}",
+  "dateModified": "{{ node.changedtime|date('c') }}",
+  {% if content.field_image %}
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ file_url(content.field_image['#items'].entity.uri.value) }}"
+  },
+  {% endif %}
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site_name }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ base_path ~ directory }}/logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ url('<current>') }}"
+  },
+  "description": "{{ content.body|striptags|slice(0, 160) }}..."
+}
+</script>

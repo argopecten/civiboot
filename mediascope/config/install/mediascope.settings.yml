@@ -1,0 +1,36 @@
+navbar_position: top
+navbar_color: dark
+navbar_background: primary
+container: container
+sidebar_first_width: 3
+sidebar_second_width: 3
+content_width: 12
+fluid_container: 0
+navbar_offcanvas: 0
+navbar_offcanvas_position: left
+navbar_offcanvas_body_scroll: 1
+navbar_offcanvas_backdrop: 1
+media_enable_hero_region: 1
+media_enable_gallery_lightbox: 1
+media_enable_lazy_loading: 1
+media_enable_reading_progress: 1
+media_enable_social_sharing: 1
+media_articles_per_page: 12
+media_gallery_columns: 3
+media_featured_image_style: large
+media_thumbnail_style: medium
+typography_headings_font: 'Playfair Display'
+typography_body_font: 'Source Sans Pro'
+typography_ui_font: 'Inter'
+colors_primary: '#2c3e50'
+colors_secondary: '#3498db'
+colors_accent: '#e74c3c'
+layout_max_width: 1200
+layout_article_width: 800
+layout_grid_gutter: 30
+performance_enable_css_minification: 1
+performance_enable_js_minification: 1
+performance_enable_image_optimization: 1
+seo_enable_structured_data: 1
+seo_enable_open_graph: 1
+seo_enable_twitter_cards: 1

@@ -1,0 +1,25 @@
+# MediaScope Theme Screenshot Description
+
+This is a screenshot placeholder for the MediaScope theme.
+
+The screenshot should show:
+- Clean, modern layout with media-focused design
+- Article cards in a grid layout
+- Hero section with featured content
+- Navigation header with branding
+- Footer with organized sections
+- Responsive design elements
+
+To create the actual screenshot:
+1. Install and enable the theme
+2. Create sample content (articles with images)
+3. Visit the homepage
+4. Take a screenshot at 1200x800 resolution
+5. Save as screenshot.png
+
+The theme features:
+- Bootstrap 5 based responsive design
+- Modern color scheme (blues and accent red)
+- Clean typography with Playfair Display and Source Sans Pro
+- Media-optimized layouts
+- Interactive elements and hover effects
